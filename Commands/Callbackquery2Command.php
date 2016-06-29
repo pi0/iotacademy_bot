@@ -32,23 +32,26 @@ class Callbackquery2Command extends SystemCommand
     public function execute()
     {
         global $courses;
-        $message = $this->getMessage();
-        $data = [];
-        $data['chat_id'] = $message->getChat()->getId();
 
         $update = $this->getUpdate();
         $callback_query = $update->getCallbackQuery();
         $callback_data = $callback_query->getData();
+        $from = $callback_query->getFrom();
+
         //$callback_query_id = $callback_query->getId();
         //$data['callback_query_id'] = $callback_query_id;
 
-        $c = @$courses[intval($callback_data)];
-        if ($c != null) {
-            $data['text'] .= "\r\n" . $c['title'] . "\r\n" . $c['desc'] . "\r\n" . "قیمت: " . $c['price'];
-            $data['text'] .= "\r\n" . $c['url'];
-        } else {
-            $data['text'] = 'یافت نشد!';
-        }
+        $data = [];
+        $data['chat_id'] = $from;
+        $data['text']='aaaa';
+//
+//        $c = @$courses[intval($callback_data)];
+//        if ($c != null) {
+//            $data['text'] .= "\r\n" . $c['title'] . "\r\n" . $c['desc'] . "\r\n" . "قیمت: " . $c['price'];
+//            $data['text'] .= "\r\n" . $c['url'];
+//        } else {
+//            $data['text'] = 'یافت نشد!';
+//        }
 
         return Request::answerCallbackQuery($data);
     }
