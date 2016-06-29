@@ -18,7 +18,7 @@ use Longman\TelegramBot\Request;
 /**
  * User "/start" command
  */
-class startCommand extends UserCommand
+class StartCommand extends UserCommand
 {
     /**#@+
      * {@inheritdoc}
