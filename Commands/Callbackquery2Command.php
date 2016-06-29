@@ -43,7 +43,9 @@ class Callbackquery2Command extends SystemCommand
         $message = $this->getMessage();
         $data = [];
         $data['chat_id'] = $message->getChat()->getId();
-        
+
+        $data['text'] = 'یافت نشد!';
+
 //        $c = @$courses[intval($callback_data)];
 //        if ($c != null) {
 //            $data['text'] .= "\r\n" . $c['title'] . "\r\n" . $c['desc'] . "\r\n" . "قیمت: " . $c['price'];
