@@ -10,9 +10,7 @@ $dotenv->load();
 $API_KEY = getenv('API_KEY');
 $BOT_NAME = getenv('BOT_NAME');
 $hook_url = getenv('HOOK_URL');
-$PDO_DSN = 'sqlite:messaging.sqlite3';
-
-//$commands_path = __DIR__ . '/Commands/';
+$PDO_DSN = getenv('PDO');
 
 
 // Create Telegram API object
@@ -21,9 +19,7 @@ $telegram = new Longman\TelegramBot\Telegram($API_KEY, $BOT_NAME);
 // Enable MySQL
 //$telegram->enableExternalMysql(new PDO($PDO_DSN));
 
-
-//// Add an additional commands path
-//$telegram->addCommandsPath($commands_path);
+$telegram->addCommandsPath(__DIR__ . '/Commands/');
 
 //// Here you can enable admin interface for the channel you want to manage
 //$telegram->enableAdmins(['your_telegram_id']);
