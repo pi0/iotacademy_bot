@@ -58,7 +58,9 @@ class CoursesCommand extends UserCommand
         }
 
 
-        $data['reply_markup'] = new InlineKeyboardMarkup(['inline_keyboard' => [$k]]);
+        $data['reply_markup'] = new InlineKeyboardMarkup(['inline_keyboard' => [[
+            new InlineKeyboardButton(['text' => 'ارتباط با ما', 'url' => 'http://www.iotacademy.ir/contact/']),
+        ]]]);
 
         return Request::sendMessage($data);
     }
