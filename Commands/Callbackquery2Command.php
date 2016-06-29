@@ -37,21 +37,16 @@ class Callbackquery2Command extends SystemCommand
         $callback_query = $update->getCallbackQuery();
         $callback_data = $callback_query->getData();
 
-        //$callback_query_id = $callback_query->getId();
-        //$data['callback_query_id'] = $callback_query_id;
-
         $data = [];
-        $data['chat_id'] ='70318509';
+        $data['chat_id'] = $callback_query->getFrom()->id;
 
-        $data['text'] = 'یافت نشد!';
-
-//        $c = @$courses[intval($callback_data)];
-//        if ($c != null) {
-//            $data['text'] .= "\r\n" . $c['title'] . "\r\n" . $c['desc'] . "\r\n" . "قیمت: " . $c['price'];
-//            $data['text'] .= "\r\n" . $c['url'];
-//        } else {
-//            $data['text'] = 'یافت نشد!';
-//        }
+        $c = @$courses[intval($callback_data)];
+        if ($c != null) {
+            $data['text'] .= "\r\n" . $c['title'] . "\r\n" . $c['desc'] . "\r\n" . "قیمت: " . $c['price'];
+            $data['text'] .= "\r\n" . $c['url'];
+        } else {
+            $data['text'] = 'یافت نشد!';
+        }
 
         return Request::sendMessage($data);
     }
