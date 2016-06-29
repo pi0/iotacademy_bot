@@ -46,8 +46,18 @@ class CoursesCommand extends UserCommand
         if ($text == '') {
             $data['text'] = 'یک دوره را انتخاب نمایید:';
         } else {
-            $data['text'] = 'دوره فلان';
-            $data['text'] .= "\r\n" . $text;
+            $c=null;
+            foreach ($courses as $id => $course) {
+                if($course['title']==$text){
+                    $c=$course;
+                    break;
+                }
+            }
+            if($c!=null){
+                $data['text'] .= "\r\n" . $c['title']."\r\n".$c['desc']."\r\n"."قیمت: ".$c['price'];
+                $data['text'] .= "\r\n".$c['url'];
+            }
+
         }
 
         //
@@ -59,7 +69,7 @@ class CoursesCommand extends UserCommand
         $data['reply_markup'] = new ReplyKeyboardMarkup(
             [
                 'keyboard' => [$k],
-                'resize_keyboard' => false,
+                'resize_keyboard' => true,
                 'one_time_keyboard' => true,
                 'selective' => true,
             ]
