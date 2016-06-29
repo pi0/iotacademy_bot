@@ -11,6 +11,7 @@
 namespace Longman\TelegramBot\Commands\UserCommands;
 
 use Longman\TelegramBot\Commands\UserCommand;
+use Longman\TelegramBot\Entities\InlineKeyboardButton;
 use Longman\TelegramBot\Entities\InlineKeyboardMarkup;
 use Longman\TelegramBot\Request;
 
@@ -40,11 +41,13 @@ class Start2Command extends UserCommand
 
         $data['text'] = 'برای شروع کار از یکی از گزینه های موجود استفاده نمایید';
 
-        $data['reply_markup'] = new InlineKeyboardMarkup(
-            [
-                'inline_keyboard' => ['/start', '/about', '/contact', '/main'],
-            ]
-        );
+        $inline_keyboard = [
+            new InlineKeyboardButton(['text' => 'inline', 'switch_inline_query' => 'true']),
+            new InlineKeyboardButton(['text' => 'callback', 'callback_data' => 'identifier']),
+            new InlineKeyboardButton(['text' => 'open url', 'url' => 'https://github.com/akalongman/php-telegram-bot']),
+        ];
+
+        $data['reply_markup'] = new InlineKeyboardMarkup(['inline_keyboard' => [$inline_keyboard]]);
 
         return Request::sendMessage($data);
     }
