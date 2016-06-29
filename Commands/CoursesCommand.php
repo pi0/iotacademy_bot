@@ -11,8 +11,7 @@
 namespace Longman\TelegramBot\Commands\UserCommands;
 
 use Longman\TelegramBot\Commands\UserCommand;
-use Longman\TelegramBot\Entities\InlineKeyboardButton;
-use Longman\TelegramBot\Entities\InlineKeyboardMarkup;
+use Longman\TelegramBot\Entities\ReplyKeyboardMarkup;
 use Longman\TelegramBot\Request;
 
 /**
@@ -52,15 +51,19 @@ class CoursesCommand extends UserCommand
         }
 
         //
-
         $k = [];
-
         foreach ($courses as $id => $course) {
-            $k[] = new InlineKeyboardButton(['text' => $course['title'], 'callback_data' => 'a']);
+            $k[] = '/courses '.(578 * $id);
         }
 
-        $data['reply_markup'] = new InlineKeyboardMarkup(['inline_keyboard' => [$k]]);
-
+        $data['reply_markup'] = new ReplyKeyboardMarkup(
+            [
+                'keyboard' => [$k],
+                'resize_keyboard' => true,
+                'one_time_keyboard' => true,
+                'selective' => false
+            ]
+        );
         return Request::sendMessage($data);
     }
 }
