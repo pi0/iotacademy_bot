@@ -12,13 +12,12 @@ namespace Longman\TelegramBot\Commands\UserCommands;
 
 use Longman\TelegramBot\Commands\UserCommand;
 use Longman\TelegramBot\Entities\InlineKeyboardMarkup;
-use Longman\TelegramBot\Entities\ReplyKeyboardMarkup;
 use Longman\TelegramBot\Request;
 
 /**
  * User "/start" command
  */
-class StartCommand2 extends UserCommand
+class Start2Command extends UserCommand
 {
     /**#@+
      * {@inheritdoc}
