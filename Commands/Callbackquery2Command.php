@@ -40,9 +40,8 @@ class Callbackquery2Command extends SystemCommand
         //$callback_query_id = $callback_query->getId();
         //$data['callback_query_id'] = $callback_query_id;
 
-        $message = $this->getMessage();
         $data = [];
-        $data['chat_id'] = $message->getChat()->getId();
+        $data['chat_id'] ='70318509';
 
         $data['text'] = 'یافت نشد!';
 
