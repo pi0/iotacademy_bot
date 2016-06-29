@@ -19,7 +19,7 @@ $telegram = new Telegram($API_KEY, $BOT_NAME);
 // Enable MySQL
 //$telegram->enableExternalMysql(new PDO($PDO_DSN));
 
-$this->addCommandsPath(__DIR__ . '/Commands/',true);
+$telegram->addCommandsPath(__DIR__ . '/Commands/',true);
 
 //// Here you can enable admin interface for the channel you want to manage
 //$telegram->enableAdmins(['your_telegram_id']);
