@@ -1,0 +1,11 @@
+{
+  "name": "iotacademy_bot",
+  "description": "iotacademy_bot",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "require": {
+    "php": ">=5.5.0",
+    "longman/telegram-bot": "*",
+    "vlucas/phpdotenv": "^2.3"
+  }
+}
