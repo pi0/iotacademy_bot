@@ -11,7 +11,8 @@
 namespace Longman\TelegramBot\Commands\UserCommands;
 
 use Longman\TelegramBot\Commands\UserCommand;
-use Longman\TelegramBot\Entities\ReplyKeyboardMarkup;
+use Longman\TelegramBot\Entities\InlineKeyboardButton;
+use Longman\TelegramBot\Entities\InlineKeyboardMarkup;
 use Longman\TelegramBot\Request;
 
 /**
@@ -46,16 +47,16 @@ class CoursesCommand extends UserCommand
         if ($text == '') {
             $data['text'] = 'یک دوره را انتخاب نمایید:';
         } else {
-            $c=null;
+            $c = null;
             foreach ($courses as $id => $course) {
-                if($course['title']==$text){
-                    $c=$course;
+                if ($course['title'] == $text) {
+                    $c = $course;
                     break;
                 }
             }
-            if($c!=null){
-                $data['text'] .= "\r\n" . $c['title']."\r\n".$c['desc']."\r\n"."قیمت: ".$c['price'];
-                $data['text'] .= "\r\n".$c['url'];
+            if ($c != null) {
+                $data['text'] .= "\r\n" . $c['title'] . "\r\n" . $c['desc'] . "\r\n" . "قیمت: " . $c['price'];
+                $data['text'] .= "\r\n" . $c['url'];
             }
 
         }
@@ -63,17 +64,21 @@ class CoursesCommand extends UserCommand
         //
         $k = [];
         foreach ($courses as $id => $course) {
-            $k[] = '/courses '.$course['title'];
+            //$k[] = '/courses '.$course['title'];
+            $k[] = new InlineKeyboardButton(['text' => $course['title'], 'switch_inline_query' => $id]);
         }
 
-        $data['reply_markup'] = new ReplyKeyboardMarkup(
-            [
-                'keyboard' => [$k],
-                'resize_keyboard' => true,
-                'one_time_keyboard' => true,
-                'selective' => true,
-            ]
-        );
+//        $data['reply_markup'] = new ReplyKeyboardMarkup(
+//            [
+//                'keyboard' => [$k],
+//                'resize_keyboard' => true,
+//                'one_time_keyboard' => true,
+//                'selective' => true,
+//            ]
+//        );
+
+        $data['reply_markup'] = new InlineKeyboardMarkup(['inline_keyboard' => [$k]]);
+
         return Request::sendMessage($data);
     }
 }
