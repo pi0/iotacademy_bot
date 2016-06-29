@@ -38,7 +38,7 @@ class Callbackquery2Command extends SystemCommand
         $callback_data = $callback_query->getData();
 
         $data = [];
-        $data['chat_id'] = $callback_query->getFrom()->id;
+        $data['chat_id'] = $callback_query->getFrom()->getId();
 
         $data['text'] = 'BOo';
 
