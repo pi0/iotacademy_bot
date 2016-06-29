@@ -11,6 +11,8 @@
 namespace Longman\TelegramBot\Commands\UserCommands;
 
 use Longman\TelegramBot\Commands\UserCommand;
+use Longman\TelegramBot\Entities\InlineKeyboardButton;
+use Longman\TelegramBot\Entities\InlineKeyboardMarkup;
 use Longman\TelegramBot\Request;
 
 /**
@@ -34,16 +36,14 @@ class ContactCommand extends UserCommand
     public function execute()
     {
         $message = $this->getMessage();
-        $chat_id = $message->getChat()->getId();
+        $data = [];
+        $data['chat_id'] = $message->getChat()->getId();
 
-        //$text = trim($message->getText(true));
+        $data['text'] = 'برای تماس با ما بر روی دکمه زیر کلیک کنید';
 
-        $text='برای ارتباط با ما به این صفحه مراجعه فرمایید http://www.iotacademy.ir/contact/';
-
-        $data = [
-            'chat_id' => $chat_id,
-            'text'    => $text,
-        ];
+        $data['reply_markup'] = new InlineKeyboardMarkup(['inline_keyboard' => [[
+            new InlineKeyboardButton(['text' => 'ارتباط با ما', 'url' => 'http://www.iotacademy.ir/contact/']),
+        ]]]);
 
 
         return Request::sendMessage($data);
