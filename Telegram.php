@@ -1,25 +1,22 @@
 <?php
 
-class Telegram extends Longman\TelegramBot\Telegram {
+class Telegram extends Longman\TelegramBot\Telegram
+{
 
-    protected $version='1.0.0';
+    protected $version = '1.0.0';
 
 
-    public function __construct($api_key, $bot_name)
+    public function addCommandsPath($path, $before = true)
     {
-        parent::__construct($api_key, $bot_name);
-        $this->commands_paths=[];
+        if ($path != BASE_COMMANDS_PATH . '/UserCommands')
+            parent::addCommandsPath($path, $before);
     }
 
-    public function addCommandsPath($path, $before = true) {
-        if($path!=BASE_COMMANDS_PATH . '/UserCommands')
-            parent::addCommandsPath($path,$before);
-    }
-
-    public function getCommandsList() {
-        $c=parent::getCommandsList();
-        $c['start']=$c['start2'];
-        return $c;
+    public function getCommandObject($command)
+    {
+        if ($command == 'start')
+            $command = 'start2';
+        return parent::getCommandObject($command);
     }
 
 }
