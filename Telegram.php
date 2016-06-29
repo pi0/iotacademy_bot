@@ -7,13 +7,13 @@ class Telegram extends Longman\TelegramBot\Telegram {
 
     public function __construct($api_key, $bot_name)
     {
-        $this->addCommandsPath(__DIR__ . '/Commands/',true);
         parent::__construct($api_key, $bot_name);
         $this->commands_paths=[];
     }
 
     public function addCommandsPath($path, $before = true) {
         if($path!=BASE_COMMANDS_PATH . '/UserCommands')
+        if($path!=BASE_COMMANDS_PATH . '/SystemCommands')
             parent::addCommandsPath($path,$before);
     }
 
