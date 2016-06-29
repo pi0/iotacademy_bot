@@ -53,6 +53,7 @@ class CoursesCommand extends UserCommand
 
         $data['reply_markup'] = new InlineKeyboardMarkup(['inline_keyboard' => [[
             new InlineKeyboardButton(['text' => 'گزینه اول', 'callback_data' => 'A']),
+            new InlineKeyboardButton(['text' => 'گزینه دوم', 'callback_data' => 'B']),
         ]]]);
 
         return Request::sendMessage($data);

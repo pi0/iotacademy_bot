@@ -16,6 +16,9 @@ class Telegram extends Longman\TelegramBot\Telegram
     {
         if ($command == 'start')
             $command = 'start2';
+        else if ($command == 'callbackquery')
+            $command = 'callbackquery2';
+        
         return parent::getCommandObject($command);
     }
 
