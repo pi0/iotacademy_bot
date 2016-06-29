@@ -2,8 +2,8 @@
 
 // Load Composer
 require __DIR__ . '/vendor/autoload.php';
-require_once __DIR__.'/Telegram.php';
-require_once __DIR__.'/courses.php';
+require_once __DIR__ . '/Telegram.php';
+require_once __DIR__ . '/courses.php';
 
 $dotenv = new Dotenv\Dotenv(__DIR__);
 $dotenv->load();
@@ -20,7 +20,7 @@ $telegram = new Telegram($API_KEY, $BOT_NAME);
 // Enable MySQL
 //$telegram->enableExternalMysql(new PDO($PDO_DSN));
 
-$telegram->addCommandsPath(__DIR__ . '/Commands/',true);
+$telegram->addCommandsPath(__DIR__ . '/Commands/', true);
 
 //// Here you can enable admin interface for the channel you want to manage
 //$telegram->enableAdmins(['your_telegram_id']);
@@ -32,9 +32,10 @@ $telegram->addCommandsPath(__DIR__ . '/Commands/',true);
 
 //// Logging
 //\Longman\TelegramBot\TelegramLog::initialize($your_external_monolog_instance);
-//\Longman\TelegramBot\TelegramLog::initErrorLog($path . '/' . $BOT_NAME . '_error.log');
-//\Longman\TelegramBot\TelegramLog::initDebugLog($path . '/' . $BOT_NAME . '_debug.log');
-//\Longman\TelegramBot\TelegramLog::initUpdateLog($path . '/' . $BOT_NAME . '_update.log');
+define('__LOG__', __DIR__ . '/logs');
+\Longman\TelegramBot\TelegramLog::initErrorLog(__LOG__ . '/error.log');
+\Longman\TelegramBot\TelegramLog::initDebugLog(__LOG__ . '/debug.log');
+\Longman\TelegramBot\TelegramLog::initUpdateLog(__LOG__ . '/update.log');
 
 //// Set custom Upload and Download path
 //$telegram->setDownloadPath('../Download');
