@@ -14,9 +14,9 @@ use Longman\TelegramBot\Commands\UserCommand;
 use Longman\TelegramBot\Request;
 
 /**
- * User "/echo" command
+ * User "/main" command
  */
-class EchoCommand extends UserCommand
+class MainCommand extends UserCommand
 {
     /**#@+
      * {@inheritdoc}
