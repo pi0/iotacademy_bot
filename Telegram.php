@@ -11,5 +11,10 @@ class Telegram extends Longman\TelegramBot\Telegram {
         $this->commands_paths=[];
     }
 
+    public function addCommandsPath($path, $before = true) {
+        if($path!=BASE_COMMANDS_PATH . '/UserCommands')
+            parent::addCommandsPath($path,$before);
+    }
+
 }
 
