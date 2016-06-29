@@ -52,11 +52,12 @@ class CoursesCommand extends UserCommand
         }
 
         //
-        $k = [];
-        foreach ($courses as $id => $course) {
-            $k[] = new InlineKeyboardButton(['text' => $id, 'callback_data' => $id]);
-        }
 
+        $k = [];
+        $k[] = new InlineKeyboardButton(['text' => 'a', 'callback_data' => 'a']);
+//        foreach ($courses as $id => $course) {
+//            $k[] = new InlineKeyboardButton(['text' => $id, 'callback_data' => $id]);
+//        }
 
         $data['reply_markup'] = new InlineKeyboardMarkup(['inline_keyboard' => [$k]]);
 
