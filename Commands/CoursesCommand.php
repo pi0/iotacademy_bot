@@ -56,7 +56,7 @@ class CoursesCommand extends UserCommand
         $k = [];
 
         foreach ($courses as $id => $course) {
-            $k[] = new InlineKeyboardButton(['text' => 'a', 'callback_data' => 'a']);
+            $k[] = new InlineKeyboardButton(['text' => $course['title'], 'callback_data' => 'a']);
         }
 
         $data['reply_markup'] = new InlineKeyboardMarkup(['inline_keyboard' => [$k]]);
