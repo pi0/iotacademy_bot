@@ -54,13 +54,11 @@ class CoursesCommand extends UserCommand
         //
         $k = [];
         foreach ($courses as $id => $course) {
-            $k[] = new InlineKeyboardButton(['text' => $course['title'], 'callback_data' => $id]);
+            $k[] = new InlineKeyboardButton(['text' => $id, 'callback_data' => $id]);
         }
 
 
-        $data['reply_markup'] = new InlineKeyboardMarkup(['inline_keyboard' => [[
-            new InlineKeyboardButton(['text' => 'ارتباط با ما', 'url' => 'http://www.iotacademy.ir/contact/']),
-        ]]]);
+        $data['reply_markup'] = new InlineKeyboardMarkup(['inline_keyboard' => [$k]]);
 
         return Request::sendMessage($data);
     }
