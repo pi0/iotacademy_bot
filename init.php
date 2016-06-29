@@ -2,7 +2,7 @@
 
 // Load Composer
 require __DIR__ . '/vendor/autoload.php';
-
+require_once __DIR__.'/Telegram.php';
 
 $dotenv = new Dotenv\Dotenv(__DIR__);
 $dotenv->load();
@@ -14,7 +14,7 @@ $PDO_DSN = getenv('PDO');
 
 
 // Create Telegram API object
-$telegram = new Longman\TelegramBot\Telegram($API_KEY, $BOT_NAME);
+$telegram = new Telegram($API_KEY, $BOT_NAME);
 
 // Enable MySQL
 //$telegram->enableExternalMysql(new PDO($PDO_DSN));
