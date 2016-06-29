@@ -40,10 +40,10 @@ class Callbackquery2Command extends SystemCommand
         //$callback_query_id = $callback_query->getId();
         //$data['callback_query_id'] = $callback_query_id;
 
+        $message = $this->getMessage();
         $data = [];
-        $data['chat_id'] = '255738860';
-        $data['text']='aaaa';
-//
+        $data['chat_id'] = $message->getChat()->getId();
+        
 //        $c = @$courses[intval($callback_data)];
 //        if ($c != null) {
 //            $data['text'] .= "\r\n" . $c['title'] . "\r\n" . $c['desc'] . "\r\n" . "قیمت: " . $c['price'];
@@ -52,6 +52,6 @@ class Callbackquery2Command extends SystemCommand
 //            $data['text'] = 'یافت نشد!';
 //        }
 
-        return Request::answerCallbackQuery($data);
+        return Request::sendMessage($data);
     }
 }
