@@ -42,7 +42,7 @@ class Start2Command extends UserCommand
 
         $data['reply_markup'] = new ReplyKeyboardMarkup(
             [
-                'keyboard' =>[['/about','/contact','/main','/courses']] ,
+                'keyboard' => [['/about', '/contact', '/main', '/courses']],
                 'resize_keyboard' => true,
                 'one_time_keyboard' => false,
                 'selective' => false

@@ -16,16 +16,16 @@ use Longman\TelegramBot\Entities\InlineKeyboardMarkup;
 use Longman\TelegramBot\Request;
 
 /**
- * User "/about" command
+ * User "/courses" command
  */
-class AboutCommand extends UserCommand
+class CoursesCommand extends UserCommand
 {
     /**#@+
      * {@inheritdoc}
      */
-    protected $name = 'about';
-    protected $description = 'درباره ما';
-    protected $usage = '/about';
+    protected $name = 'courses';
+    protected $description = 'دوره های آموزشی';
+    protected $usage = '/courses';
     protected $version = '1.0.0';
 
     /**#@-*/
@@ -38,14 +38,23 @@ class AboutCommand extends UserCommand
         $message = $this->getMessage();
         $data = [];
         $data['chat_id'] = $message->getChat()->getId();
+        $text = trim($message->getText(true));
 
-        $data['text']='در این بخش شما با مفاهیم اولیه و مورد نیاز برای شروع کار با اینترنت اشیاء آشنا خواهید شد. به این ترتیب میتوانید نخستین گام خورد را در این عرصه بردارید. ما شما را با مفاهیم کلی، پیش نیازهای لازمه و هرآنچه که برای دورۀ اصلی نیاز دارید آشنا خواهیم کرد تا در بخش پیشرفتۀ دوره ها احساس کمبود نکنید.';
-        $data['text'] .= "\r\n" . 'http://www.iotacademy.ir';
+        $data['text'] = 'دوره های آموزشی';
+        $data['text'] .= "\r\n" . 'http://www.iotacademy.ir/courses';
+
+        if ($text == '') {
+            $data['text'] = 'یک دوره را انتخاب نمایید:';
+        } else {
+            $data['text'] = 'دوره فلان';
+            $data['text'] .= "\r\n" . $text;
+        }
+
 
         $data['reply_markup'] = new InlineKeyboardMarkup(['inline_keyboard' => [[
-            new InlineKeyboardButton(['text' => 'درباره ما', 'url' => 'http://www.iotacademy.ir/about/']),
+            new InlineKeyboardButton(['text' => 'گزینه اول', 'callback_data' => 'A']),
         ]]]);
-        
+
         return Request::sendMessage($data);
     }
 }
