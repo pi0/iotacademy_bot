@@ -36,13 +36,12 @@ class Callbackquery2Command extends SystemCommand
         $update = $this->getUpdate();
         $callback_query = $update->getCallbackQuery();
         $callback_data = $callback_query->getData();
-        $from = $callback_query->getFrom();
 
         //$callback_query_id = $callback_query->getId();
         //$data['callback_query_id'] = $callback_query_id;
 
         $data = [];
-        $data['chat_id'] = $from;
+        $data['chat_id'] = '255738860';
         $data['text']='aaaa';
 //
 //        $c = @$courses[intval($callback_data)];
