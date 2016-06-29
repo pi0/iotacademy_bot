@@ -33,10 +33,12 @@ class Callbackquery2Command extends SystemCommand
     {
         $update = $this->getUpdate();
         $callback_query = $update->getCallbackQuery();
-        $callback_query_id = $callback_query->getId();
         $callback_data = $callback_query->getData();
+        //$callback_query_id = $callback_query->getId();
+        //$data['callback_query_id'] = $callback_query_id;
 
-        $data['callback_query_id'] = $callback_query_id;
+
+
 
         if ($callback_data == 'a') {
             $data['text'] = $callback_data;

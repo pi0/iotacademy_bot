@@ -35,6 +35,7 @@ class CoursesCommand extends UserCommand
      */
     public function execute()
     {
+        global $courses;
         $message = $this->getMessage();
         $data = [];
         $data['chat_id'] = $message->getChat()->getId();
@@ -50,11 +51,14 @@ class CoursesCommand extends UserCommand
             $data['text'] .= "\r\n" . $text;
         }
 
+        //
+        $k = [];
+        foreach ($courses as $id => $course) {
+            $k[] = new InlineKeyboardButton(['text' => $course['title'], 'callback_data' => $id]);
+        }
 
-        $data['reply_markup'] = new InlineKeyboardMarkup(['inline_keyboard' => [[
-            new InlineKeyboardButton(['text' => 'گزینه اول', 'callback_data' => 'A']),
-            new InlineKeyboardButton(['text' => 'گزینه دوم', 'callback_data' => 'B']),
-        ]]]);
+
+        $data['reply_markup'] = new InlineKeyboardMarkup(['inline_keyboard' => [$k]]);
 
         return Request::sendMessage($data);
     }
