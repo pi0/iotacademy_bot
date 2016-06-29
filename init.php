@@ -3,12 +3,14 @@
 // Load Composer
 require __DIR__ . '/vendor/autoload.php';
 
+
 $dotenv = new Dotenv\Dotenv(__DIR__);
 $dotenv->load();
 
 $API_KEY = getenv('API_KEY');
 $BOT_NAME = getenv('BOT_NAME');
 $hook_url = getenv('HOOK_URL');
+$PDO_DSN = 'sqlite:messaging.sqlite3';
 
 //$commands_path = __DIR__ . '/Commands/';
 
@@ -16,11 +18,9 @@ $hook_url = getenv('HOOK_URL');
 // Create Telegram API object
 $telegram = new Longman\TelegramBot\Telegram($API_KEY, $BOT_NAME);
 
-//// Enable MySQL
-//$telegram->enableMySQL($mysql_credentials);
+// Enable MySQL
+//$telegram->enableExternalMysql(new PDO($PDO_DSN));
 
-//// Enable MySQL with table prefix
-//$telegram->enableMySQL($mysql_credentials, $BOT_NAME . '_');
 
 //// Add an additional commands path
 //$telegram->addCommandsPath($commands_path);
