@@ -53,15 +53,15 @@ class CoursesCommand extends UserCommand
         //
         $k = [];
         foreach ($courses as $id => $course) {
-            $k[] = '/courses '.(578 * $id);
+            $k[] = '/courses '.$course['title'];
         }
 
         $data['reply_markup'] = new ReplyKeyboardMarkup(
             [
                 'keyboard' => [$k],
-                'resize_keyboard' => true,
+                'resize_keyboard' => false,
                 'one_time_keyboard' => true,
-                'selective' => false
+                'selective' => true,
             ]
         );
         return Request::sendMessage($data);
